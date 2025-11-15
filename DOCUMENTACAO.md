@@ -53,8 +53,8 @@ Este projeto implementa o jogo 2048 utilizando Python e Pygame, seguindo princí
 │  └───────────────┬───────────────────┘  │
 └──────────────────┼──────────────────────┘
                    │
-        ┌──────────┼──────────┐
-        │          │          │
+        ┌──────────┼───────-───┐
+        │          │           │
 ┌───────▼──────┐ ┌─▼────────┐ ┌▼──────────────┐
 │  src/        │ │ estados/ │ │ ranking.txt   │
 │              │ │          │ │               │
@@ -910,10 +910,10 @@ transposta = [
                     │   (Inicial)      │
                     └────────┬─────────┘
                              │
-                  ┌──────────┼──────────┐
-                  │                     │
-         [Novo Jogo]              [Ver Ranking]
-                  │                     │
+                  ┌──────────┼─────────┐
+                  │                    │
+              [Novo Jogo]        [Ver Ranking]
+                  │                    │
           ┌───────▼──────────┐  ┌──────▼──────┐
           │ EstadoJogando    │  │EstadoRanking│
           │                  │  │             │
@@ -936,8 +936,8 @@ transposta = [
                     │EstadoInserirNome││
                     │                 ││
                     │[Enter: salvar]  ││
-                    └────────┬─────────┘
-                             │
+                    └────────┬────────┘|
+                             │         |
                              └─────────┘
 
                     [ESC em qualquer estado]
