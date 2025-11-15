@@ -46,9 +46,9 @@ Este projeto implementa o jogo 2048 utilizando Python e Pygame, seguindo princí
 ┌─────────────────────────────────────────┐
 │        2048_jogo.py (Main)              │
 │  ┌───────────────────────────────────┐  │
-│  │    Classe Jogo (Game Manager)    │  │
-│  │  - Loop principal                │  │
-│  │  - Gerenciamento de estados      │  │
+│  │    Classe Jogo (Game Manager)     │  │
+│  │  - Loop principal                 │  │
+│  │  - Gerenciamento de estados       │  │
 │  │  - Recursos compartilhados        │  │
 │  └───────────────┬───────────────────┘  │
 └──────────────────┼──────────────────────┘
@@ -311,15 +311,15 @@ class EstadoBase:
 
 ### Estados Concretos
 
-| Estado               | Responsabilidade                    | Transições Possíveis              |
-|----------------------|-------------------------------------|----------------------------------|
-| EstadoMenu          | Tela inicial                        | → Jogando, Ranking, ConfirmarSaída |
-| EstadoJogando       | Jogo principal                      | → Vitória, GameOver, ConfirmarSaída |
-| EstadoVitoria       | Overlay ao atingir 2048            | → Jogando (continuar), Menu       |
-| EstadoFimDeJogo     | Overlay quando não há movimentos   | → InserirNome                     |
-| EstadoInserirNome   | Captura nome do jogador            | → Ranking                         |
-| EstadoRanking       | Exibe top 15 pontuações            | → Menu                            |
-| EstadoConfirmarSaida| Confirmação antes de sair          | → Estado anterior, ou Encerrar    |
+| Estado               | Responsabilidade                    | Transições Possíveis                |
+|----------------------|-------------------------------------|-------------------------------------|
+| EstadoMenu           | Tela inicial                        | → Jogando, Ranking, ConfirmarSaída  |
+| EstadoJogando        | Jogo principal                      | → Vitória, GameOver, ConfirmarSaída |
+| EstadoVitoria        | Overlay ao atingir 2048             | → Jogando (continuar), Menu         |
+| EstadoFimDeJogo      | Overlay quando não há movimentos    | → InserirNome                       |
+| EstadoInserirNome    | Captura nome do jogador             | → Ranking                           |
+| EstadoRanking        | Exibe top 15 pontuações             | → Menu                              |
+| EstadoConfirmarSaida | Confirmação antes de sair           | → Estado anterior, ou Encerrar      |
 
 ---
 
@@ -533,11 +533,11 @@ Exemplo: `[2, 2, 4] → [4, 4]`, NÃO `[8]`
 
 **Estratégias de Reutilização:**
 
-| Método          | Transformação                                           |
-|-----------------|---------------------------------------------------------|
-| mover_esquerda  | Direto: aplica `_mover_linha_esquerda`                 |
-| mover_direita   | Inverte → move esquerda → desinverte                    |
-| mover_cima      | Transpõe → move esquerda → transpõe                     |
+| Método          | Transformação                                              |
+|-----------------|------------------------------------------------------------|
+| mover_esquerda  | Direto: aplica `_mover_linha_esquerda`                     |
+| mover_direita   | Inverte → move esquerda → desinverte                       |
+| mover_cima      | Transpõe → move esquerda → transpõe                        |
 | mover_baixo     | Transpõe → inverte → move esquerda → desinverte → transpõe |
 
 **Exemplo Visual (mover_direita):**
@@ -905,9 +905,9 @@ transposta = [
 ### Diagrama de Transições
 
 ```
-                    ┌─────────────────┐
-                    │   EstadoMenu    │
-                    │   (Inicial)     │
+                    ┌───────────────-──┐
+                    │   EstadoMenu     │
+                    │   (Inicial)      │
                     └────────┬─────────┘
                              │
                   ┌──────────┼──────────┐
@@ -954,19 +954,19 @@ transposta = [
 
 | Estado Atual       | Evento              | Próximo Estado      |
 |--------------------|---------------------|---------------------|
-| Menu              | Clicar "Novo Jogo"  | Jogando            |
-| Menu              | Clicar "Ranking"    | Ranking            |
-| Menu              | Pressionar ESC      | ConfirmarSaída     |
-| Jogando           | Atingir 2048        | Vitória            |
-| Jogando           | Sem movimentos      | FimDeJogo          |
-| Jogando           | Pressionar ESC      | ConfirmarSaída     |
-| Vitória           | Pressionar C        | Jogando (continua) |
-| Vitória           | Pressionar M        | Menu               |
-| FimDeJogo         | Qualquer tecla      | InserirNome        |
-| InserirNome       | Pressionar Enter    | Ranking            |
-| Ranking           | Qualquer tecla      | Menu               |
-| ConfirmarSaída    | Pressionar S        | Encerra programa   |
-| ConfirmarSaída    | Pressionar N/ESC    | Estado anterior    |
+| Menu               | Clicar "Novo Jogo"  | Jogando             |
+| Menu               | Clicar "Ranking"    | Ranking             |
+| Menu               | Pressionar ESC      | ConfirmarSaída      |
+| Jogando            | Atingir 2048        | Vitória             |
+| Jogando            | Sem movimentos      | FimDeJogo           |
+| Jogando            | Pressionar ESC      | ConfirmarSaída      |
+| Vitória            | Pressionar C        | Jogando (continua)  |
+| Vitória            | Pressionar M        | Menu                |
+| FimDeJogo          | Qualquer tecla      | InserirNome         |
+| InserirNome        | Pressionar Enter    | Ranking             |
+| Ranking            | Qualquer tecla      | Menu                |
+| ConfirmarSaída     | Pressionar S        | Encerra programa    |
+| ConfirmarSaída     | Pressionar N/ESC    | Estado anterior     |
 
 ---
 
@@ -1151,13 +1151,13 @@ alpha = min(255, tempo_decorrido // 2)  # Fade in
 
 ### Operações Principais
 
-| Operação                  | Complexidade | Explicação                           |
-|---------------------------|-------------|--------------------------------------|
-| Movimento (qualquer dir.) | O(n²)       | Processa todas as células           |
-| Verificar game over       | O(n²)       | Varre toda a matriz                 |
-| Gerar nova peça          | O(n²)       | Busca células vazias                |
-| Maior peça               | O(n²)       | Procura max em toda matriz          |
-| Salvar/Carregar estado   | O(n²)       | Deepcopy da matriz                  |
+| Operação                  | Complexidade | Explicação                            |
+|---------------------------|--------------|---------------------------------------|
+| Movimento (qualquer dir.) | O(n²)        | Processa todas as células             |
+| Verificar game over       | O(n²)        | Varre toda a matriz                   |
+| Gerar nova peça           | O(n²)        | Busca células vazias                  |
+| Maior peça                | O(n²)        | Procura max em toda matriz            |
+| Salvar/Carregar estado    | O(n²)        | Deepcopy da matriz                    |
 
 ### Uso de Memória
 
