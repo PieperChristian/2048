@@ -2,7 +2,7 @@
 
 **Autor:** Christian Pieper  
 **Disciplina:** Algoritmos e Estruturas de Dados I - UniSenac  
-**Versão:** 5.0  
+**Versão:** 1.0  
 **Data:** Novembro de 2025
 
 ---
