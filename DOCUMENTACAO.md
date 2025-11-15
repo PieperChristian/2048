@@ -942,12 +942,12 @@ transposta = [
 
                     [ESC em qualquer estado]
                              │
-                    ┌────────▼──────────┐
+                    ┌────────▼──────────-┐
                     │EstadoConfirmarSaída│
-                    │                   │
-                    │[S: sair]          │
-                    │[N: cancelar]      │
-                    └───────────────────┘
+                    │                    │
+                    │[S: sair]           │
+                    │[N: cancelar]       │
+                    └──────────────────-─┘
 ```
 
 ### Tabela de Transições
